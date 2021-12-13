@@ -1,0 +1,12 @@
+end_points:
+  - name: "IO"
+    url: "http://{{host_ip}}:{{host_port}}/config/io?auth={{hash}}"
+    method: "POST"
+    payload_encoder: "encode_io_name"
+    payload: 
+      - id: 2
+        name: ""
+      - id: 0
+        name: "ST:Status"
+      - id: 1
+        name: "ST:Pallet,NI:{{ni}}"

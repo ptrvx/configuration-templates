@@ -1,0 +1,61 @@
+vars:
+  push_pckt_type: "udp"
+  push_trg_type:  "change"
+  push_tcp_ip:   "10.37.30.10"
+  push_tcp_port: 5050
+  push_udp_ip:   "10.37.30.10"
+  push_udp_port: 5050 
+  hash: 46e42b867f5573ffa950ac2bd2f31352c221b34b04eb7822ce81e386f882370b
+  host_port:  80
+  ni: 2
+controllers:
+  - controller: PLB-Mock-1
+    config_template: is-plb-test.yml.j2
+    vars:
+      host_ip:   "localhost"
+      host_port:  5000
+      resource_id: "PLB-Mock-1"
+
+  - controller: PLB-Test-2
+    config_template: is-plb-test.yml.j2
+    vars:
+      host_ip:   "10.37.28.10"
+      resource_id: "PLB-Test-2"
+      
+  - controller: PLB-Test-3
+    config_template: is-plb-test.yml.j2
+    vars:
+      host_ip:   "10.37.28.133"      
+      resource_id: "PLB-Test-3"
+
+  - controller: IS-PLB-84100013-P10
+    config_template: is-plb-84100001-x.yml.j2
+    specific_config: is-plb-84100001-11_10.yml.j2
+    vars:
+      host_ip:   "10.37.28.12"
+      host_port:  80
+      resource_id: "STA-8400-84100013-P10"
+
+  - controller: IS-PLB-84100013-P11
+    config_template: is-plb-84100001-x.yml.j2
+    specific_config: is-plb-84100001-11_10.yml.j2
+    vars:
+      host_ip:   "10.37.28.11"
+      host_port:  80
+      resource_id: "STA-8400-84100013-P11"
+
+  - controller: IS-PLB-84100013-P12
+    config_template: is-plb-84100001-x.yml.j2
+    specific_config: is-plb-84100001-12.yml.j2
+    vars:
+      host_ip:   "10.37.28.135"
+      host_port:  80
+      resource_id: "STA-8400-84100013-P12"
+
+  - controller: TEST-PV
+    config_template: is-plb-84100001-x.yml.j2
+    specific_config: is-plb-84100001-12.yml.j2
+    vars:
+      host_ip:    "localhost"
+      host_port:  5000
+      resource_id: "test-mock-pv"

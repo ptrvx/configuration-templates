@@ -1,0 +1,76 @@
+
+end_points:
+  - name: "Metadata"
+    url: "http://{{host_ip}}:{{host_port}}/meta?auth={{hash}}"
+    method: "POST"
+    payload: 
+      device_name: "{{ controller }}"
+      resource_id: "{{ resource_id }}"
+
+  - name: "DNS"
+    url: "http://{{host_ip}}:{{host_port}}/system/dns?auth={{hash}}"
+    method: "POST"
+    payload:
+      addresses: ["10.37.1.21","10.37.1.22"]
+
+  - name: "SNTP"
+    url: "http://{{host_ip}}:{{host_port}}/system/sntp?auth={{hash}}"
+    method: "POST"
+    payload:
+      enabled: 1
+      hostnames: ["10.37.1.21", "10.37.1.22"]
+
+  - name: "PUSH"
+    url: "http://{{host_ip}}:{{host_port}}/config/push?auth={{hash}}"
+    method: "POST"
+    payload: 
+      trg_type:  "{{push_trg_type}}"
+      pckt_type: "{{push_pckt_type}}"
+      {% if  push_pckt_type=="tcp" %}
+      ip:   "{{push_tcp_ip}}"
+      port: "{{push_tcp_port}}"
+      {% else %}
+      ip:   "{{push_udp_ip}}"
+      port: "{{push_udp_port}}"
+      {% endif %}
+
+  - name: "IO"
+    url: "http://{{host_ip}}:{{host_port}}/config/io?auth={{hash}}"
+    method: "POST"
+    payload_encoder: "encode_io_name"
+    payload:
+      - id: 1
+        name: ""
+      - id: 2
+        name: ""
+      - id: 3
+        name: ""
+      - id: 4
+        name: ""
+      - id: 5
+        name: ""
+      - id: 6
+        name: ""
+      - id: 7
+        name: ""
+      - id: 8
+        name: ""
+      - id: 9
+        name: ""
+      - id: 10
+        name: ""
+      - id: 11
+        name: ""
+      - id: 12
+        name: ""
+      - id: 13
+        name: ""
+      - id: 14
+        name: ""
+      - id: 15
+        name: ""
+
+after_actions:
+  - name: "Saving config"
+    method: "POST"
+    url: "http://{{host_ip}}:{{host_port}}/config/save?auth={{hash}}"

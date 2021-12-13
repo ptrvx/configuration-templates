@@ -1,0 +1,47 @@
+
+end_points:
+  - name: "Metadata"
+    url: "http://{{host_ip}}:{{host_port}}/meta?auth={{hash}}"
+    method: "POST"
+    payload: 
+      device_name: "{{ controller }}"
+      resource_id: "{{ resource_id }}"
+
+  - name: "DNS"
+    url: "http://{{host_ip}}:{{host_port}}/system/dns?auth={{hash}}"
+    method: "POST"
+    payload:
+      addresses: ["10.37.1.21","10.37.1.22"]
+
+  - name: "SNTP"
+    url: "http://{{host_ip}}:{{host_port}}/system/sntp?auth={{hash}}"
+    method: "POST"
+    payload: 
+      enabled: 1
+      hostnames: ["10.37.1.21", "10.37.1.22"]
+
+  - name: "PUSH"
+    url: "http://{{host_ip}}:{{host_port}}/config/push?auth={{hash}}"
+    method: "POST"
+    payload: 
+      ip:   "{{push_ip}}"
+      port: "{{push_port}}"
+      trg_type:  "{{push_trg_type}}"
+      pckt_type: "{{push_pckt_type}}"
+
+  - name: "IO"
+    url: "http://{{host_ip}}:{{host_port}}/config/io?auth={{hash}}"
+    method: "POST"
+    payload_encoder: "encode_io_name"
+    payload:
+      - id: 1
+        name: "ST=Status"
+        trigger: 2
+      - id: 3
+        name: "ST=Pallet,NI={{ni}}"
+        trigger: 1
+
+after_actions:
+  - name: "Save"
+    method: "POST"
+    url: "http://{{host_ip}}:{{host_port}}/config/save?auth={{hash}}"
