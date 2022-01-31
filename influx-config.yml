@@ -1,12 +1,20 @@
 ---
-db_name: _test
-retention_policies:
-  - name: test
-    duration: 1d
-    shardGroupDuration: 4h
-    replicaN: 1
-    default: False
-  - name: temp
-    duration: 8h
-  - name: longTerm
-    duration: 1w
+- db_name: _test
+  retention_policies:
+    - name: test
+      duration: 1d
+      shardGroupDuration: 4h
+      replicaN: 1
+      default: False
+    - name: temp
+      duration: 8h
+    - name: longTerm
+      duration: 1w
+- db_name: raw_data
+  retention_policies:
+    - name: main
+      duration: 1w
+- db_name: test_data
+  retention_policies:
+    - name: testing
+      duration: 2h
