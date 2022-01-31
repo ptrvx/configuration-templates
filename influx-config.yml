@@ -1,0 +1,12 @@
+---
+db_name: _test
+retention_policies:
+  - name: test
+    duration: 1d
+    shardGroupDuration: 4h
+    replicaN: 1
+    default: False
+  - name: temp
+    duration: 8h
+  - name: longTerm
+    duration: 1w
