@@ -8,6 +8,7 @@
       default: False
     - name: temp
       duration: 8h
+      replicaN: 1
     - name: longTerm
       duration: 1w
 - db_name: raw_data
