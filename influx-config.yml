@@ -11,11 +11,14 @@
       replicaN: 1
     - name: longTerm
       duration: 1w
+      replicaN: 1
 - db_name: raw_data
   retention_policies:
     - name: main
       duration: 1w
+      replicaN: 1
 - db_name: test_data
   retention_policies:
     - name: testing
       duration: 2h
+      replicaN: 1
